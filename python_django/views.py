@@ -27,3 +27,6 @@ def hello(request):
 def homepage(request):
     html = "这是首页"
     return HttpResponse(html)
+
+
+
