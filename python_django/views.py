@@ -28,5 +28,6 @@ def homepage(request):
     html = "这是首页"
     return HttpResponse(html)
 
-
+def index(resquest):
+    return HttpResponse("这是Index页面")
 
