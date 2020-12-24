@@ -225,3 +225,6 @@ def people(request, name):
 def info(request, name):
     s = name + '的详细信息'
     return HttpResponse(s)
+
+def static_test(request):
+    return render(request, 'staticTest.html')
