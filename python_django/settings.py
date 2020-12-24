@@ -28,6 +28,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), '../static/').replace('\\', '/'),
+)
+
+
 # Application definition
 
 INSTALLED_APPS = [

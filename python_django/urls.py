@@ -35,7 +35,9 @@ urlpatterns = [
     url(r'^test2$', views.test_request2),
     url(r'^test_get$', views.test_get),
     url(r'^show_info', views.show_info),
+
     url(r'^shebao$', views.shebao),
+    url(r'^shebao_result$', views.shebao_result),
 
     url(r'^page1', views.page1_templates, name='page1'),
     url(r'^page2', views.page2_render),

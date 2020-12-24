@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>社保计算器</title>
+    <style>
+        td, th {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript" src="../static/js/jquery-1.11.3.js"></script>
+    <script>
+        $(function (){
+            var options = $("option")
+            $.each(options, function (i, opt) {
+                console.log('value: ',opt.value, '{{ is_city }}')
+                if(opt.value == '{{ is_city }}'){
+                    opt.selected = true
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+
+
+<form method="post" action="/shebao_result">
+    请输入基数：
+    <input type="text" name="money" value="{{ money }}">
+    <p>
+        请选择户口：
+        <select name="is_city">
+            <option value="0">农村人口</option>
+            <option value="1">城镇人口</option>
+        </select>
+    </p>
+    <input type="submit">
+</form>
+
+{% block table %}
+{% endblock table %}
+
+{# 或者使用if判断money来显示table  用一个模板 #}
+
+
+</body>
+</html>

@@ -131,107 +131,26 @@ def search(request):
         return HttpResponse("其他请求方式")
 
 
+# 社保计算器
 def shebao(request):
-    html = """
-    <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="post" action="/shebao">
-
-    请输入基数：
-    <input type="text" name="salary">
-    <p>
-        请选择户口：
-        <select name="country">
-            <option value="city">城镇人口</option>
-            <option value="town">农村人口</option>
-        </select>
-    </p>
-    <input type="submit">
-</form>
-</body>
-</html>
-    """
     if request.method == 'GET':
-        return HttpResponse(html)
-    elif request.method == 'POST':
-        html = """
-        
-        <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+        return render(request, 'shebao.html')
 
-<table>
-    <thead>
-        <tr>
-            <td>项目</td>
-            <td>个人缴纳</td>
-            <td>单位缴纳</td>
-        </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>养老保险</td>
-        <td>xxxx元</td>
-        <td>xxxx元</td>
-    </tr>
-    <tr>
-        <td>失业保险</td>
-        <td>xxxx元</td>
-        <td>xxxx元</td>
-    </tr>
-    <tr>
-        <td>工伤保险</td>
-        <td>xxxx元</td>
-        <td>xxxx元</td>
-    </tr>
-    <tr>
-        <td>生育保险</td>
-        <td>xxxx元</td>
-        <td>xxxx元</td>
-    </tr>
-    <tr>
-        <td>医疗保险</td>
-        <td>xxxx元</td>
-        <td>xxxx元</td>
-    </tr>
-    <tr>
-        <td>公积金</td>
-        <td>xxxx元</td>
-        <td>xxxx元</td>
-    </tr>
-    <tr>
-        <td>个人缴费总和</td>
-        <td colspan="2">xxxx元</td>
-    </tr>
-    <tr>
-        <td>公司缴费总和</td>
-        <td colspan="2">xxxx元</td>
-    </tr>
-    <tr>
-        <td>纳入国家全额总和</td>
-        <td colspan="2">xxxx元</td>
-    </tr>
-    </tbody>
 
-</table>
+def shebao_result(request):
+    if request.method == 'POST':
+        money = request.POST.get('money', 0.00)
+        money = money if money else '0'
+        money = float(money)
+        is_city = request.POST.get('is_city', 0)
+        yl_gr = money * 0.08
+        yl_dw = money * 0.19
+        sy_gr = money * (0.02 if is_city == '1' else 0)
+        sy_dw = money * 0.08
 
-</body>
-</html>
-        
-        """
-        value = request.POST.get('salary', 0.00)
-        hukou = request.POST.get('country', '')
-        print("基数：" + value + " 户口：" + hukou)
-        return HttpResponse(html)
+        return render(request, 'shebao_result.html', locals())
     else:
-        return HttpResponse("其他")
+        return HttpResponse("请使用post请求方式")
 
 
 # 调用模板文件
