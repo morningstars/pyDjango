@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>反向解析传参</title>
+</head>
+<body>
+<h1>姓名：{{ name }}</h1>
+<a href="{% url 'info' name %}">跳转到{{ name }}的个人信息</a>
+</body>
+</html>

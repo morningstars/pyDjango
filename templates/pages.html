@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>反向解析示例</title>
+</head>
+<body>
+{# 需要在urls.py中设置路由的name #}
+<div><a href="{% url 'page1' %}">第一页</a></div>
+<div><a href="/page2">第二页</a></div>
+<div><a href="/page3">第三页</a></div>
+<div><a href="{% url 'index' %}">返回首页</a></div>
+</body>
+</html>

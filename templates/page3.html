@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签语法</title>
+</head>
+<body>
+
+{% if age < 18 %}
+    <h1>未成年人</h1>
+{% elif age > 80 %}
+    <h1>老年人</h1>
+{% else %}
+    <h1>其他人</h1>
+{% endif %}
+
+<ul>
+    {% for item in favorite %}
+        {% if forloop.first %}<li>------------</li>{% endif %}
+        <li style="background-color: {% cycle 'red' 'yellow' %}">第{{ forloop.counter }} 个爱好：{{ item }}</li>
+        {% empty %}<li>没有爱好</li>
+    {% endfor %}
+</ul>
+
+<table>
+    {% for item in favorite %}
+        <tr style="background-color: {% cycle 'red' 'yellow' %}">
+            <td>{{ item }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{# 模板的单行注释 #}
+
+{% comment %}
+模板的多行注释
+{% endcomment %}
+
+
+</body>
+</html>

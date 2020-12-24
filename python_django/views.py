@@ -27,9 +27,9 @@ def hello(request):
     return HttpResponse(html)
 
 
-def homepage(request):
-    html = "这是首页"
-    return HttpResponse(html)
+# def homepage(request):
+#     html = "这是首页"
+#     return HttpResponse(html)
 
 
 # 带有参数的视图函数
@@ -233,6 +233,7 @@ def shebao(request):
     else:
         return HttpResponse("其他")
 
+
 # 调用模板文件
 def page1_templates(request):
     '''此函数用于测试模板的加载渲染'''
@@ -268,3 +269,40 @@ def page2_render(request):
 
     # 第二种传参方式
     return render(request, 'page2.html', d)
+
+
+def page3(request):
+    d = {'name': '老师',
+         'age': 32,
+         'favorite': ['看书', '看电影', '篮球', '羽毛球', '游戏']
+         }
+    return render(request, 'page3.html', d)
+
+
+def page4(request):
+    string = 'welcome to SH'
+    a = 100
+    b = 200
+    print('locals=', locals())
+    return render(request, 'page4.html', locals())
+
+
+def homepage(request):
+    return render(request, 'base.html')
+
+
+def sport_homepage(request):
+    return render(request, 'sport.html')
+
+
+def pages(request):
+    return render(request, 'pages.html')
+
+
+def people(request, name):
+    return render(request, 'people.html', locals())
+
+
+def info(request, name):
+    s = name + '的详细信息'
+    return HttpResponse(s)
