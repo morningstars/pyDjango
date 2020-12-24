@@ -20,8 +20,8 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^page1/$', views.page1),
-    url(r'^page2/$', views.page2),
+    # url(r'^page1/$', views.page1),
+    # url(r'^page2/$', views.page2),
     url(r'^page3/$', views.hello),
     url(r'^$', views.homepage),
     url(r'^year/(\d{4})$', views.page_year),
@@ -35,4 +35,7 @@ urlpatterns = [
     url(r'^test_get$', views.test_get),
     url(r'^show_info', views.show_info),
     url(r'^shebao$', views.shebao),
+
+    url(r'^page1$', views.page1_templates),
+    url(r'^page2$', views.page2_render),
 ]
