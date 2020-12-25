@@ -19,6 +19,7 @@ from django.contrib import admin
 from . import views
 
 from django.conf.urls import include
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^page1/$', views.page1),
@@ -46,7 +47,7 @@ urlpatterns = [
     url(r'^page4', views.page4),
 
     url(r'^$', views.homepage, name='index'),
-    url(r'^sport', views.sport_homepage),
+    url(r'^sport$', views.sport_homepage),
 
     url(r'^pages', views.pages),
     url(r'^people/(\w+)', views.people, name='people'),
@@ -55,4 +56,7 @@ urlpatterns = [
     url(r'^static_test', views.static_test),
 
     url(r'^music/', include('music.urls')),
+    url(r'^sport/', include('sport.urls')),
+    url(r'^news/', include('news.urls')),
+    url(r'^book/', include('bookstore.urls')),
 ]
