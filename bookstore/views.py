@@ -29,7 +29,7 @@ def add(request):
         title = request.POST.get('title', '')
         price = request.POST.get('price', '')
         pub = request.POST.get('pub', '')
-        pub_date = request.POST.get('pub_date','')
+        pub_date = request.POST.get('pub_date', '')
 
         book = models.Book(title=title,
                            price=price,
