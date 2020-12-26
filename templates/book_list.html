@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书列表</title>
+</head>
+<body>
+<a href="/book">返回首页</a>
+<a href="/book/add">添加新书</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>书名</th>
+        <th>出版社</th>
+        <th>定价</th>
+        <th>出版日期</th>
+        <th>修改</th>
+        <th>删除</th>
+    </tr>
+
+    {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td><a href="/book/filter/{{ book.pub }}">{{ book.pub }}</a></td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.pub_date }}</td>
+            <td><a href="/book/mod/{{ book.id }}">修改</a></td>
+            <td><a href="/book/del/{{ book.id }}">删除</a></td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

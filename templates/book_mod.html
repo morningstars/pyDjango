@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改价格</title>
+</head>
+<body>
+<form method="post" action="/book/mod/{{ book.id }}">
+    <div>书名：{{ book.title }}</div>
+    <div>出版社：{{ book.pub }}</div>
+    <div>出版日期：{{ book.pub_date }}</div>
+    <div>价格：<input type="text" name="price" value="{{ book.price }}"></div>
+    <div><input type="submit" value="修改价格"></div>
+</form>
+</body>
+</html>
