@@ -1,18 +1,40 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+
+from django.db.models import F
+from django.db.models import Q
+
 from . import models
 
 
 # Create your views here.
 
 def homepage(request):
+    # cursor  更新数据库
+    from django.db import connection
+    with connection.cursor() as cur:
+        cur.execute("update bookstore_book set pub='北京大学出版社' where id=2;")
+
     return render(request, 'book_homepage.html')
 
 
 def list_books(request):
     # 从模型中取数据
     books = models.Book.objects.all()
+
+    # F 对象
+    from django.db.models import F
+    models.Book.objects.all().update(price=F('price') + 10)
+
+    # Q 对象  & | ~  与或非
+    from django.db.models import Q
+    models.Book.objects.filter(Q(price__lt=20) | Q(pub='清华大学出版社'))
+
+    # raw 方法
+    books = models.Book.objects.raw("select * from bookstore_book;")
+    for book in books:
+        print(book)
 
     # 排序
     # books = models.Book.objects.order_by('-price')
