@@ -59,4 +59,7 @@ urlpatterns = [
     url(r'^sport/', include('sport.urls')),
     url(r'^news/', include('news.urls')),
     url(r'^book/', include('bookstore.urls')),
+    url(r'^mybook/', include('mybookstore.urls')),
+    url(r'^userinfo/', include('userinfo.urls')),
+
 ]

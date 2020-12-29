@@ -17,7 +17,9 @@ class Book(models.Model):
     price = models.DecimalField('定价', max_digits=7, decimal_places=2)
     pub = models.CharField('出版社名字', max_length=50, null=True)
     pub_date = models.DateField('出版时间', default='2020-01-01')
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
+
+    # 增加多对一属性
+    myAuthor = models.ForeignKey(Author, null=True)
 
     def __str__(self):
         return "id：%d, 书名：%s, 出版社：%s, 出版时间：%s" % (self.id, self.title, self.pub, self.pub_date)
