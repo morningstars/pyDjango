@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.http import Http404
 
 from django.db.models import F
 from django.db.models import Q
@@ -50,6 +51,9 @@ def filter_books(request, pub):
 
 
 def add(request):
+    if 'userinfo' not in request.session:
+        raise Http404
+
     if request.method == 'GET':
         return render(request, 'book_add.html')
     elif request.method == 'POST':
@@ -73,6 +77,9 @@ def add(request):
 
 
 def del_books(request, book_id):
+    if 'userinfo' not in request.session:
+        raise Http404
+
     try:
         book = models.Book.objects.get(id=book_id)
         book.delete()
@@ -82,6 +89,9 @@ def del_books(request, book_id):
 
 
 def mod_books(request, book_id):
+    if 'userinfo' not in request.session:
+        raise Http404
+
     try:
         book = models.Book.objects.get(id=book_id)
     except:

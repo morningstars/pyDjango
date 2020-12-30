@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+
+{# 判断是否登录 #}
+{% if request.session.userinfo %}
+    <div>
+        <label>欢迎{{ request.session.userinfo.username }}</label>
+        <a href="/userinfo/logout">退出登录</a>
+    </div>
+{% else %}
+    <ul>
+        <li><a href="/userinfo/login">登录</a></li>
+        <li><a href="/userinfo/register">注册</a></li>
+    </ul>
+
+{% endif %}
+
+<a href="/book/list">查看书籍</a>
+
+</body>
+</html>
