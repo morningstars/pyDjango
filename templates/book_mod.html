@@ -6,6 +6,7 @@
 </head>
 <body>
 <form method="post" action="/book/mod/{{ book.id }}">
+    {% csrf_token %}
     <div>书名：{{ book.title }}</div>
     <div>出版社：{{ book.pub }}</div>
     <div>出版日期：{{ book.pub_date }}</div>

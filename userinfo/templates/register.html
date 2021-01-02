@@ -11,6 +11,7 @@
 </head>
 <body>
 <form method="post" action="/userinfo/register">
+    {% csrf_token %}
     <div>
         <label>姓名：</label>
         <input type="text" name="username">

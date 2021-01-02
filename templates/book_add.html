@@ -6,6 +6,7 @@
 </head>
 <body>
 <form method="post" action="/book/add">
+    {% csrf_token %}
     <div>
         书名：
         <input type="text" name="title">
