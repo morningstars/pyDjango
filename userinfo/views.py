@@ -21,7 +21,7 @@ def login(request):
         # 验证用户名、密码
         try:
             user = models.User.objects.get(name=username)
-            if username == user.name and password == user.password:
+            if password == user.password:
                 # 登录成功
                 request.session['userinfo'] = {
                     'username': user.name,
