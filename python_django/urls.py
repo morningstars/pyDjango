@@ -54,6 +54,7 @@ urlpatterns = [
     url(r'^info/(\w+)', views.info, name='info'),
 
     url(r'^static_test', views.static_test),
+    url(r'^upload', views.on_upload),
 
     url(r'^music/', include('music.urls')),
     url(r'^sport/', include('sport.urls')),

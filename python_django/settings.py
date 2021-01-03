@@ -135,3 +135,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# 自定义一个UPLOAD_DIR 用于绑定上传文件的路径
+UPLOAD_DIR = os.path.join(BASE_DIR, 'static/images')

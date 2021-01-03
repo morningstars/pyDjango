@@ -6,6 +6,7 @@ class RegForm(forms.Form):
     password = forms.CharField(label='请输入密码', widget=forms.PasswordInput)
     password2 = forms.CharField(label='重复输入密码', widget=forms.PasswordInput)
 
+# 验证数据是否合法  使用clean_数据(self):  方法  返回'数据'
     def clean_username(self):
         username = self.cleaned_data['username']
         if len(username) < 6:

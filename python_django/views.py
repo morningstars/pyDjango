@@ -2,6 +2,11 @@ from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.template import loader
 from django.shortcuts import render
+import os
+
+# 导入当前项目配置文件的setting模块
+# from . import settings
+from django.conf import settings
 
 
 def page1(request):
@@ -226,5 +231,22 @@ def info(request, name):
     s = name + '的详细信息'
     return HttpResponse(s)
 
+
 def static_test(request):
     return render(request, 'staticTest.html')
+
+
+def on_upload(request):
+    if request.method == 'GET':
+        return render(request, 'upload.html')
+    elif request.method == 'POST':
+        myfile = request.FILES['myfile']
+        print('myfile=', myfile)
+        print('上传文件的名称为：', myfile.name)
+
+        # 使用setting模块
+        with open(os.path.join(settings.UPLOAD_DIR, myfile.name), 'wb') as f:
+            b = myfile.file.read()
+            f.write(b)# 写入相应位置
+
+        return HttpResponse('文件上传成功')
