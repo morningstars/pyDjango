@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from . import models
+from . import forms
 
 
 # Create your views here.
@@ -70,3 +71,15 @@ def logout(request):
 
 def homepage(request):
     return render(request, 'homepage.html', locals())
+
+
+def test_form(request):
+    if request.method == 'GET':
+        myform = forms.RegForm()
+        return render(request, 'test_form.html', locals())
+    elif request.method == 'POST':
+        myform = forms.RegForm(request.POST)
+        if myform.is_valid():
+            return HttpResponse('表单提交成功' + str(myform.cleaned_data))
+        else:
+            return HttpResponse('表单数据验证失败')

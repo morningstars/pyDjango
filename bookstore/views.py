@@ -44,6 +44,19 @@ def list_books(request):
     return render(request, 'book_list.html', locals())
 
 
+def book_page(request):
+    books = models.Book.objects.all()
+
+    from django.core.paginator import Paginator
+
+    paginator = Paginator(books, 2)
+
+    cur_page = request.GET.get('page', 1)
+    page = paginator.page(cur_page)
+
+    return render(request, 'book.html', locals())
+
+
 def filter_books(request, pub):
     # 筛选
     books = models.Book.objects.filter(pub=pub)

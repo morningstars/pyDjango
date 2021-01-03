@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书列表</title>
+</head>
+<body>
+<a href="/book">返回首页</a>
+<a href="/book/add">添加新书</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>书名</th>
+        <th>出版社</th>
+        <th>定价</th>
+        <th>出版日期</th>
+        <th>修改</th>
+        <th>删除</th>
+    </tr>
+
+    {% for book in page %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td><a href="/book/filter/{{ book.pub }}">{{ book.pub }}</a></td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.pub_date }}</td>
+            <td><a href="/book/mod/{{ book.id }}">修改</a></td>
+            <td><a href="/book/del/{{ book.id }}">删除</a></td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+{# 上一页 #}
+{% if page.has_previous %}
+    <a href=" {% url 'book' %}?page={{ page.previous_page_number }} ">上一页</a>
+{% else %}
+    上一页
+{% endif %}
+
+{# 以下增加各页的超链接 #}
+{% for page_num in paginator.page_range %}
+    {# 如果当前页为选中页  则不添加超链接 #}
+    {% if page_num == cur_page %}
+        {{ page_num }}
+    {% else %}
+        <a href="{% url 'book' %}?page={{ page_num }}">{{ page_num }}</a>
+    {% endif %}
+{% endfor %}
+
+{# 下一页 #}
+{% if page.has_next %}
+    <a href=" {% url 'book' %}?page={{ page.next_page_number }} ">下一页</a>
+{% else %}
+    下一页
+{% endif %}
+
+{# 总页数 #}
+总页数：{{ paginator.num_pages }}
+
+</body>
+</html>
